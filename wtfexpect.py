@@ -11,6 +11,13 @@ class WtfExpect():
 		self.names = {}
 		self.retcodes = {}
 
+	def __enter__(self):
+		return self
+
+	def __exit__(self, *exc):
+		self.finish()
+		return False
+
 	def run(self, argv):
 		p = subprocess.run(
 			argv,
